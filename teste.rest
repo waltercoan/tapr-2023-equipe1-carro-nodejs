@@ -1,7 +1,7 @@
 ### Buscar todos os carros
 GET http://localhost:3000/api/v1/carros
 ### Buscar carro pelo ID
-GET http://localhost:3000/api/v1/carros/3f840c63-130c-436b-8543-97ab14caf16f
+GET http://localhost:3000/api/v1/carros/85167f00-8a75-4047-a359-f5069553a21f
 
 ### Inserir um novo Carro
 POST http://localhost:3000/api/v1/carros
@@ -12,7 +12,7 @@ Content-Type: application/json
 }
 
 ### Atualizar o  Carro
-PUT http://localhost:3000/api/v1/carros/bed1c3ec-fd13-433e-986f-c23419a9cdf9
+PUT http://localhost:3000/api/v1/carros/85167f00-8a75-4047-a359-f5069553a21fa
 Content-Type: application/json
 
 {
@@ -21,4 +21,33 @@ Content-Type: application/json
 
 ### Remover o Carro
 DELETE  http://localhost:3000/api/v1/carros/bed1c3ec-fd13-433e-986f-c23419a9cdf9
+Content-Type: application/json
+
+
+### Buscar todos os clientes
+GET http://localhost:3000/api/v1/clientes
+
+### Buscar cliente pelo ID
+GET http://localhost:3000/api/v1/clientes/af7b63da-f452-4760-bc7e-af112dc49b0f
+
+### Inserir um novo cliente
+POST http://localhost:3000/api/v1/clientes
+Content-Type: application/json
+
+{
+  "nome": "zezinho",
+  "endereco": "Rua lalala 100"
+}
+
+### Atualizar o cliente
+PUT http://localhost:3000/api/v1/clientes/af7b63da-f452-4760-bc7e-af112dc49b0f
+Content-Type: application/json
+
+{
+  "nome": "zezinho",
+  "endereco": "Rua lalala 200"
+}
+
+### Remover o cliente
+DELETE  http://localhost:3000/api/v1/clientes/af7b63da-f452-4760-bc7e-af112dc49b0f
 Content-Type: application/json

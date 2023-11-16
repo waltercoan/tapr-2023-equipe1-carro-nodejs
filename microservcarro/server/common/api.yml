@@ -38,6 +38,33 @@ paths:
         200:
           description: Return all
           content: {}
+  /clientes:
+    get:
+      responses:
+        200:
+          description: Return all
+          content: {}
+    post:
+      responses:
+          200:
+            description: Return all
+            content: {}
+  /clientes/{id}:
+    get:
+      responses:
+        200:
+          description: Return all
+          content: {}
+    put:
+      responses:
+        200:
+          description: Return all
+          content: {}
+    delete:
+      responses:
+        200:
+          description: Return all
+          content: {}          
   /examples:
     get:
       tags:

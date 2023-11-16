@@ -1,5 +1,8 @@
 # tapr-2023-equipe1-carro-nodejs
 
+![Diagrama](diagramas/tapr-microsservico2023.png "Diagrama")
+- [Diagrama](diagramas/tapr-microsservico2023.vsdx)
+
 ## Autenticação no AZURE
 [DOC](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
 
@@ -353,3 +356,27 @@ export default express
 DELETE  http://localhost:3000/api/v1/carros/bed1c3ec-fd13-433e-986f-c23419a9cdf9
 Content-Type: application/json
 ```
+
+## Chaves de partição
+- [DOC: Particionamento](https://learn.microsoft.com/en-us/azure/cosmos-db/partitioning-overview)
+- Correção no código /server/api/services/carro.service.ts
+```
+    async delete(id:string): Promise<string>{
+
+        const querySpec: SqlQuerySpec = {
+            query: "SELECT * FROM Carro c WHERE c.id = @id",
+            parameters: [
+                {name: "@id", value: id}
+            ]
+            };
+        const {resources: listaCarros}
+            = await this.container.items.query(querySpec).fetchAll();
+        for (const carro of listaCarros) {
+            await this.container.item(carro.id).delete();
+        }
+        
+        return Promise.resolve(id);
+    }
+```
+## Modelagem de bancos de dados NoSQL
+- [DOC: Modelagem de dados](https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/modeling-data)

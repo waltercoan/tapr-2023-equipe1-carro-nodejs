@@ -40,6 +40,10 @@ class CarroService{
         const {resources: listaCarros}
             = await this.container.items.query(querySpec).fetchAll();
         const carroAntigo = listaCarros[0];
+        
+        if(carroAntigo == undefined){
+            return Promise.reject();
+        }
 
         //Atualizar os campos
         carroAntigo.placa = carro.placa;
@@ -59,7 +63,7 @@ class CarroService{
         const {resources: listaCarros}
             = await this.container.items.query(querySpec).fetchAll();
         for (const carro of listaCarros) {
-            await this.container.item(carro.id,carro.placa).delete();
+            await this.container.item(carro.id).delete();
         }
         
         return Promise.resolve(id);
