@@ -7,4 +7,5 @@ export default express
     .get('/:id', controller.getById)
     .post('/', controller.post)
     .put('/:id', controller.update)
-    .delete('/:id', controller.delete);
+    .delete('/:id', controller.delete)
+    .post('/event', controller.updateEvent);

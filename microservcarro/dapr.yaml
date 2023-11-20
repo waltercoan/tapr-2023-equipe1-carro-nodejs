@@ -1,0 +1,8 @@
+version: 1
+common:
+  resourcesPath: ./components/
+apps:
+  - appID: tapr-2023-equipe1-carro-javascript
+    appDirPath: .
+    appPort: 3000
+    command: ["npm", "run", "dev"]

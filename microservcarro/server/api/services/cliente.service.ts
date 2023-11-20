@@ -3,8 +3,14 @@ import cosmosDb from "../../common/cosmosdb";
 import { Cliente } from "../entites/cliente";
 
 class ClienteService{
+    
     private container:Container =
         cosmosDb.container("cliente");
+
+    async updateEvent(cliente:Cliente): Promise<Cliente>{
+        await this.container.items.upsert(cliente);
+        return Promise.resolve(cliente);
+    }
     
     async all(): Promise<Cliente[]>{
         const {resources: listaClientes}

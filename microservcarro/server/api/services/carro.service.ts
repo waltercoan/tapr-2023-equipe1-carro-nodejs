@@ -1,5 +1,6 @@
 import { Container, SqlQuerySpec } from "@azure/cosmos";
 import cosmosDb from "../../common/cosmosdb";
+import daprClient from "../../common/daprclient";
 import { Carro } from "../entites/carro";
 
 class CarroService{
@@ -27,7 +28,7 @@ class CarroService{
     async saveNew(carro:Carro): Promise<Carro>{
         carro.id = "";
         await this.container.items.create(carro);
-        
+        await this.publishEvent(carro);
         return Promise.resolve(carro);
     }
     async update(id:string, carro:Carro): Promise<Carro>{
@@ -48,8 +49,9 @@ class CarroService{
         //Atualizar os campos
         carroAntigo.placa = carro.placa;
         
-        await this.container.items.upsert(carroAntigo)
-        
+        await this.container.items.upsert(carroAntigo);
+        await this.publishEvent(carroAntigo);
+
         return Promise.resolve(carroAntigo);
     }
     async delete(id:string): Promise<string>{
@@ -67,6 +69,14 @@ class CarroService{
         }
         
         return Promise.resolve(id);
+    }
+
+    async publishEvent(carro:Carro): Promise<Carro>{
+        daprClient.pubsub.publish(process.env.APPCOMPONENTSERVICE as string,
+                                  process.env.APPCOMPONENTTOPICCARRO as string,
+                                  carro);
+        return Promise.resolve(carro);
+
     }
 }
 

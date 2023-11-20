@@ -8,7 +8,7 @@ POST http://localhost:3000/api/v1/carros
 Content-Type: application/json
 
 {
-  "placa": "MDB3389"
+  "placa": "MDB3389.TS"
 }
 
 ### Atualizar o  Carro
@@ -51,3 +51,14 @@ Content-Type: application/json
 ### Remover o cliente
 DELETE  http://localhost:3000/api/v1/clientes/af7b63da-f452-4760-bc7e-af112dc49b0f
 Content-Type: application/json
+
+
+###
+
+GET http://localhost:3000/dapr/subscribe
+
+###
+POST http://localhost:3000/api/v1/clientes/event
+Content-Type: application/json
+
+{"id": "123","nome": "Zezinho.TS4444","endereco": "Rua lalala 100"}
